@@ -12,7 +12,7 @@ public class NBody {
 
     public static Planet[] readPlanets(String filename) {
         In content = new In(filename);
-        double number = content.readInt();
+        int number = content.readInt();
         double radius = content.readDouble();
         Planet[] ansArrary = new Planet[number];
 
