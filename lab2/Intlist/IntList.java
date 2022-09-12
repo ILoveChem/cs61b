@@ -102,11 +102,16 @@ public class IntList {
         }
         IntList newList = new IntList();
         IntList pointer = newList;
+        IntList prep = null;
         while (A != null) {
             newList.first = A.first;
             newList.rest = new IntList();
+            prep = newList;
             newList = newList.rest;
             A = A.rest;
+        }
+        if (B == null) {
+            prep.rest = null;
         }
         while (B != null) {
             newList.first = B.first;
