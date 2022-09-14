@@ -1,32 +1,30 @@
-import java.lang.reflect.Type;
-
 public class LinkedListDeque<T> {
 
-    public class typeNode {
-        public T val;
-        public typeNode next;
-        public typeNode prev;
+    public class TypeNode {
+        private T val;
+        private TypeNode next;
+        private TypeNode prev;
 
-        public typeNode(T item, typeNode next, typeNode prev) {
+        public TypeNode(T item, TypeNode next, TypeNode prev) {
             this.val = item;
             this.next = next;
             this.prev = prev;
         }
     }
 
-    private typeNode headSentiNode;
+    private TypeNode headSentiNode;
     private int size;
-    private typeNode endSentiNode;
-    private typeNode last;
-    private typeNode first;
+    private TypeNode endSentiNode;
+    private TypeNode last;
+    private TypeNode first;
 
     /**
      * initialization an empty linked list deque.
      * */
     public LinkedListDeque() {
         size = 0;
-        headSentiNode = new typeNode(null, null, null);
-        endSentiNode = new typeNode(null, null, null);
+        headSentiNode = new TypeNode(null, null, null);
+        endSentiNode = new TypeNode(null, null, null);
         headSentiNode.prev = endSentiNode;
         headSentiNode.next = endSentiNode;
         endSentiNode.prev = headSentiNode;
@@ -36,8 +34,8 @@ public class LinkedListDeque<T> {
     }
 
     public LinkedListDeque(LinkedListDeque other) {
-        headSentiNode = new typeNode(null, null, null);
-        endSentiNode = new typeNode(null, null, null);
+        headSentiNode = new TypeNode(null, null, null);
+        endSentiNode = new TypeNode(null, null, null);
         headSentiNode.prev = endSentiNode;
         headSentiNode.next = endSentiNode;
         endSentiNode.prev = headSentiNode;
@@ -46,10 +44,10 @@ public class LinkedListDeque<T> {
             this.size = 0;
         } else {
             this.size = other.size;
-            typeNode pointer = other.first;
-            typeNode prepointer = headSentiNode;
+            TypeNode pointer = other.first;
+            TypeNode prepointer = headSentiNode;
             while (pointer != other.endSentiNode) {
-                typeNode newNode = new typeNode(pointer.val, null, null);
+                TypeNode newNode = new TypeNode(pointer.val, null, null);
                 prepointer.next = newNode;
                 newNode.prev = prepointer;
                 prepointer = prepointer.next;
@@ -66,7 +64,7 @@ public class LinkedListDeque<T> {
      * @param val value to be added at the first of list.
      */
     public void addFirst(T val) {
-        typeNode newNode = new typeNode(val, first, headSentiNode);
+        TypeNode newNode = new TypeNode(val, first, headSentiNode);
         headSentiNode.next = newNode;
         first.prev = newNode;
         first = newNode;
@@ -86,7 +84,7 @@ public class LinkedListDeque<T> {
      * @param val element to be added.
      */
     public void addLast(T val) {
-        typeNode newNode = new typeNode(val, endSentiNode, last);
+        TypeNode newNode = new TypeNode(val, endSentiNode, last);
         endSentiNode.prev = newNode;
         last.next = newNode;
         last = newNode;
@@ -110,8 +108,8 @@ public class LinkedListDeque<T> {
         if (this.size == 0) {
             return null;
         }
-        typeNode returnNode = this.first;
-        typeNode nextFirst = this.first.next;
+        TypeNode returnNode = this.first;
+        TypeNode nextFirst = this.first.next;
         nextFirst.prev = this.headSentiNode;
         this.headSentiNode.next = nextFirst;
         this.first = nextFirst;
@@ -128,8 +126,8 @@ public class LinkedListDeque<T> {
         if (this.size == 0) {
             return null;
         }
-        typeNode returnNode = this.last;
-        typeNode nextLast = this.last.prev;
+        TypeNode returnNode = this.last;
+        TypeNode nextLast = this.last.prev;
         this.endSentiNode.prev = nextLast;
         nextLast.next = this.endSentiNode;
         this.size -= 1;
@@ -139,7 +137,7 @@ public class LinkedListDeque<T> {
     }
 
     public void printDeque() {
-        typeNode pointer = this.first;
+        TypeNode pointer = this.first;
         for (int i = 0; i < this.size; i++) {
             System.out.print(first.val + " ");
         }
@@ -155,14 +153,14 @@ public class LinkedListDeque<T> {
         if (index + 1 > this.size) {
             return null;
         }
-        typeNode pointer = this.first;
+        TypeNode pointer = this.first;
         for (int i = 0; i < index; i++) {
             pointer = pointer.next;
         }
         return pointer.val;
     }
 
-    private T getRecursiveNode(typeNode p, int ind) {
+    private T getRecursiveNode(TypeNode p, int ind) {
         if (ind == 0) {
             return p.val;
         }

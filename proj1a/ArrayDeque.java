@@ -33,8 +33,10 @@ public class ArrayDeque<T> {
         this.usage = other.usage;
         // if other is full.
         if (other.headIndex == other.endIndex && other.size != 0) {
-            System.arraycopy(other.items, other.headIndex, this.items, 0, other.items.length - other.headIndex);
-            System.arraycopy(other.items, 0, this.items, other.items.length - other.headIndex, other.headIndex);
+            System.arraycopy(other.items, other.headIndex, this.items,
+                    0, other.items.length - other.headIndex);
+            System.arraycopy(other.items, 0, this.items,
+                    other.items.length - other.headIndex, other.headIndex);
             this.headIndex = 0;
             this.endIndex = this.size;
         }
@@ -47,7 +49,7 @@ public class ArrayDeque<T> {
             for (int i = other.headIndex; i < other.items.length; i++) {
                 this.items[i] = other.items[i];
             }
-            for (int i =0; i < other.endIndex; i++) {
+            for (int i = 0; i < other.endIndex; i++) {
                 this.items[i] = other.items[i];
             }
         }
@@ -130,7 +132,7 @@ public class ArrayDeque<T> {
         items[endIndex] = item;
         endIndex += 1;
         size += 1;
-        usage = 1.0 * size /items.length;
+        usage = 1.0 * size / items.length;
     }
 
     /**
@@ -154,7 +156,7 @@ public class ArrayDeque<T> {
      * Once all the items have been printed, print out a new line.
      */
     public void printDeque() {
-        if (size != 0){
+        if (size != 0) {
             if (endIndex > headIndex) {
                 for (int i = headIndex; i < endIndex; i++) {
                     System.out.print(items[i] + " ");
@@ -209,5 +211,12 @@ public class ArrayDeque<T> {
             deleteSize(size / 2);
         }
         return returnVal;
+    }
+
+    public T get(int index) {
+        if (index + 1 > size) {
+            return null;
+        }
+        return items[(headIndex + index) % items.length];
     }
 }
