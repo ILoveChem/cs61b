@@ -119,7 +119,6 @@ public class ArrayDeque<T> {
         items[headIndex] = item;
         size += 1;
         usage = 1.0 * size / items.length;
-        this.printDeque();
     }
 
     /**
