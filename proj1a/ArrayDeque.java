@@ -24,6 +24,7 @@ public class ArrayDeque<T> {
      * create a deep copy of given array deque.
      * @param other array deque to be copied.
      */
+    /**
     public ArrayDeque(ArrayDeque<T> other) {
         this.size = other.size;
         T[] newDeque = (T []) new Object[other.items.length];
@@ -54,6 +55,7 @@ public class ArrayDeque<T> {
             }
         }
     }
+     */
 
     /**
      * Add boxes so that the length of items is newSize.
@@ -100,22 +102,24 @@ public class ArrayDeque<T> {
      * @param item item to be added.
      */
     public void addFirst(T item) {
+        int length = items.length;
         // if items is empty.
         if (size == 0) {
             endIndex += 1;
         }
         // if items is full.
-        if (size == items.length) {
+        if (size == length) {
             addSize(size * 2);
             headIndex = (headIndex - 1 + items.length) % items.length;
         }
         // if items is not neither full nor empty.
-        if (size < items.length && size > 0) {
+        if (size < length && size > 0) {
             headIndex = (headIndex - 1 + items.length) % items.length;
         }
         items[headIndex] = item;
         size += 1;
         usage = 1.0 * size / items.length;
+        this.printDeque();
     }
 
     /**

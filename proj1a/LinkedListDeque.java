@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    public class TypeNode {
+    private class TypeNode {
         private T val;
         private TypeNode next;
         private TypeNode prev;
@@ -32,7 +32,7 @@ public class LinkedListDeque<T> {
         last = endSentiNode.prev;
         first = headSentiNode.next;
     }
-
+    /**
     public LinkedListDeque(LinkedListDeque other) {
         headSentiNode = new TypeNode(null, null, null);
         endSentiNode = new TypeNode(null, null, null);
@@ -59,6 +59,7 @@ public class LinkedListDeque<T> {
             last = endSentiNode.prev;
         }
     }
+     */
 
     /**
      * @param val value to be added at the first of list.
