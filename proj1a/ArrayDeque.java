@@ -132,8 +132,8 @@ public class ArrayDeque<T> {
             addSize(size * 2);
         }
         // if not full or empty, no need to modify.
-        items[endIndex] = item;
-        endIndex += 1;
+        items[endIndex % items.length] = item;
+        endIndex = endIndex % items.length + 1;
         size += 1;
         usage = 1.0 * size / items.length;
     }
@@ -191,7 +191,7 @@ public class ArrayDeque<T> {
         usage = 1.0 * size / items.length;
         // determine if delete useless boxes.
         if (usage <= 0.25 && items.length > 8) {
-            deleteSize(size / 2);
+            deleteSize(items.length / 2);
         }
         return returnVal;
     }
@@ -211,7 +211,7 @@ public class ArrayDeque<T> {
         size -= 1;
         usage = 1.0 * size / items.length;
         if (usage <= 0.25 && items.length > 8) {
-            deleteSize(size / 2);
+            deleteSize(items.length / 2);
         }
         return returnVal;
     }
